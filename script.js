@@ -5,7 +5,7 @@ const contador = document.querySelector("#contador");
 const listaTarefas = document.querySelector("#lista-tarefas");
 
 // Resgate de tarefas do localStorage
-const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 
 // Ouvir e agir sobre o clique 
 form.addEventListener("submit", adicionarTarefa);
@@ -152,7 +152,7 @@ function Atualizarcontador() {
 }
 
 function editarTarefa(id){
-    const tarefa = tarefas.find(function (tarefa){
+    let tarefa = tarefas.find(function (tarefa){
         return tarefa.id === id;
     });
    
@@ -176,6 +176,8 @@ function excluirTarefa(id){
     tarefas = tarefas.filter(function(tarefa){
         return tarefa.id !== id
     });
+    salvarTarefa()
+    renderizarTarefas()
 }
 
 renderizarTarefas();
